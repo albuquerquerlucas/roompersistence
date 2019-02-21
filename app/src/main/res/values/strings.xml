@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Teste Banco</string>
+
+    <string-array name="sp_tipos">
+        <item>Selecione o tipo...</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>

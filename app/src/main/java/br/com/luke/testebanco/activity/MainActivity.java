@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String tipo = this.h.spTipo.getSelectedItem().toString();
 
         if(tipo.contains("Selecione")){
+
             Toast.makeText(this, "Selecione o tipo", Toast.LENGTH_SHORT).show();
             return;
         }

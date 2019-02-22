@@ -17,14 +17,30 @@ public class DataBaseClient {
         public void migrate(SupportSQLiteDatabase database) {
             // Fazer as alterações aqui...
             database.execSQL("ALTER TABLE tb_usuario "
-                    + " ADD COLUMN fl_tipo INTEGER");
+                    + " ADD COLUMN teste text default ''");
+        }
+    };
+
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            // Fazer as alterações aqui...
+            database.execSQL("alter table tb_usuario rename to tb_usuario_temp;");
+            database.execSQL("create table tb_usuario(" +
+                    "id integer primary key autoincrement," +
+                    "nm_nome text," +
+                    "cp_login text," +
+                    "k_senha text," +
+                    "fl_tipo integer);");
+            database.execSQL("insert into tb_usuario select id, nm_nome, cp_login, k_senha, fl_tipo from tb_usuario_temp;");
+            database.execSQL("drop table tb_usuario_temp;");
         }
     };
 
     private DataBaseClient(Context ctx){
         this.context = ctx;
         dataBase = Room.databaseBuilder(this.context, DataBase.class, "app-store.db")
-                //.addMigrations(MIGRATION_1_2) // Update...
+                //.addMigrations(MIGRATION_1_2, MIGRATION_2_3) // Update...
                 .fallbackToDestructiveMigration() // Drop and re-create...
                 .build();
     }

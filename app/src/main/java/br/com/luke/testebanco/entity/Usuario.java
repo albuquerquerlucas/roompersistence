@@ -24,6 +24,9 @@ public class Usuario implements Serializable {
     @ColumnInfo(name = "fl_tipo")
     private int tipo;
 
+    @ColumnInfo(name = "teste")
+    private String teste;
+
     public Usuario() {
     }
 
@@ -72,5 +75,13 @@ public class Usuario implements Serializable {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
     }
 }

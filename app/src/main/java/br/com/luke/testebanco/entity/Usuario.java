@@ -2,6 +2,7 @@ package br.com.luke.testebanco.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -30,6 +31,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
+    @Ignore
     public Usuario(String nome, String login, String senha, int tipo) {
         this.nome = nome;
         this.login = login;

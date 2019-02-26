@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CadastroTurmaActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edt_turma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:hint="Turma"/>
+
+        <Button
+            android:id="@+id/btn_salvar_turma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="SALVAR"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ver_turmas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TURMAS CADASTRADAS"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

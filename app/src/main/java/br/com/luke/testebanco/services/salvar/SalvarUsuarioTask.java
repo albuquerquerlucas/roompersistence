@@ -1,4 +1,4 @@
-package br.com.luke.testebanco.services;
+package br.com.luke.testebanco.services.salvar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,12 +9,12 @@ import br.com.luke.testebanco.activity.MainActivity;
 import br.com.luke.testebanco.entity.Usuario;
 import br.com.luke.testebanco.persistence.DataBaseClient;
 
-public class SalvarTask extends AsyncTask<String, Void, Void> {
+public class SalvarUsuarioTask extends AsyncTask<String, Void, Void> {
 
     @SuppressLint("StaticFieldLeak")
     private Context context;
 
-    public SalvarTask(Context context) {
+    public SalvarUsuarioTask(Context context) {
         this.context = context;
     }
 

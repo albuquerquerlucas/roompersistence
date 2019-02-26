@@ -9,7 +9,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import br.com.luke.testebanco.R;
-import br.com.luke.testebanco.services.SalvarTask;
+import br.com.luke.testebanco.services.salvar.SalvarUsuarioTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        new SalvarTask(this).execute(nome, login, senha, tipo);
+        new SalvarUsuarioTask(this).execute(nome, login, senha, tipo);
 
         cleanInputs();
     }

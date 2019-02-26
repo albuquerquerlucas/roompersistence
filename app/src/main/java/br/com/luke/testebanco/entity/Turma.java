@@ -2,6 +2,7 @@ package br.com.luke.testebanco.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Turma implements Serializable {
     public Turma() {
     }
 
+    @Ignore
     public Turma(String turma) {
         this.turma = turma;
     }

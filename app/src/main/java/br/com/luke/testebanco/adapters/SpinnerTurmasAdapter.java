@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.luke.testebanco.R;
 import br.com.luke.testebanco.entity.Turma;
 
 public class SpinnerTurmasAdapter extends ArrayAdapter<String> {
@@ -43,16 +45,21 @@ public class SpinnerTurmasAdapter extends ArrayAdapter<String> {
     private View createItemView(int position, View convertView, ViewGroup parent){
         final View view = mInflater.inflate(mResource, parent, false);
 
-        TextView offTypeTv = (TextView) view.findViewById(R.id.offer_type_txt);
-        TextView numOffersTv = (TextView) view.findViewById(R.id.num_offers_txt);
-        TextView maxDiscTV = (TextView) view.findViewById(R.id.max_discount_txt);
+        ViewHolder holder = new ViewHolder();
 
-        Offer offerData = items.get(position);
+        holder.txtId = (TextView) view.findViewById(R.id.txt_id_turma);
+        holder.txtDescricao = (TextView) view.findViewById(R.id.txt_desc_turma);
 
-        offTypeTv.setText(offerData.getOfferType());
-        numOffersTv.setText(offerData.getNumberOfCoupons());
-        maxDiscTV.setText(offerData.getMaxDicount());
+        Turma turma = turmas.get(position);
+
+        holder.txtId.setText(String.valueOf(turma.getId()));
+        holder.txtDescricao.setText(turma.getTurma());
 
         return view;
+    }
+
+    private class ViewHolder{
+        TextView txtId;
+        TextView txtDescricao;
     }
 }

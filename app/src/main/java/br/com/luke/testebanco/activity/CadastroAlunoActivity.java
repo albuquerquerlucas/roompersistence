@@ -3,20 +3,26 @@ package br.com.luke.testebanco.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.luke.testebanco.R;
+import br.com.luke.testebanco.adapters.SpinnerTurmasAdapter;
 import br.com.luke.testebanco.components.AlunoActHolder;
 import br.com.luke.testebanco.delegate.BuscarTurmasDelegate;
 import br.com.luke.testebanco.entity.Turma;
+import br.com.luke.testebanco.services.buscar.BuscarTurmaTask;
+import br.com.luke.testebanco.services.salvar.SalvarAlunoTask;
 import br.com.luke.testebanco.services.salvar.SalvarTurmaTask;
 import br.com.luke.testebanco.util.NavigationActivity;
 
 public class CadastroAlunoActivity extends AppCompatActivity implements InitActivity, BuscarTurmasDelegate, View.OnClickListener {
 
     private AlunoActHolder ah;
+    private SpinnerTurmasAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +36,26 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
     protected void onResume() {
         super.onResume();
         initListeners();
+
+        new BuscarTurmaTask(this, CadastroAlunoActivity.this).execute();
     }
 
     @Override
     public void initListeners() {
         this.ah.getBtnSalvar().setOnClickListener(this);
         this.ah.getBtnVisualizarAlunos().setOnClickListener(this);
+
+        /*this.ah.getSpTurma().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //idTurma = Long.parseLong(((TextView)view.findViewById(R.id.txt_id_turma)).getText().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });*/
     }
 
     @Override
@@ -53,19 +73,19 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
     private void salvarAluno(){
 
         String aluno = this.ah.getEdtAluno().getText().toString();
-        String turma = this.ah.getSpTurma().getSelectedItem().toString();
+        Turma turma = (Turma) this.ah.getSpTurma().getSelectedItem();
 
         if (aluno.isEmpty()){
             Toast.makeText(this, "Informe o nome do aluno.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(turma.contains("Selecione")){
+        if(turma.getTurma().contains("Selecione")){
             Toast.makeText(this, "Selecione uma turma.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        new SalvarTurmaTask(this).execute(aluno, turma);
+        new SalvarAlunoTask(this).execute(aluno, String.valueOf(turma.getId()));
     }
 
     @Override
@@ -76,7 +96,8 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
     }
 
     private void carregarTurmas(List<Turma> turmas){
-
+        this.adapter = new SpinnerTurmasAdapter(this, R.layout.item_sp_turmas, turmas);
+        this.ah.getSpTurma().setAdapter(this.adapter);
     }
 
     @Override

@@ -10,7 +10,7 @@ import br.com.luke.testebanco.entity.Aluno;
 import br.com.luke.testebanco.entity.Turma;
 import br.com.luke.testebanco.entity.Usuario;
 
-@Database(entities = {Usuario.class, Turma.class, Aluno.class}, version = 3)
+@Database(entities = {Usuario.class, Turma.class, Aluno.class}, version = 3, exportSchema = false)
 public abstract class DataBase extends RoomDatabase {
 
     public abstract UsuarioDao usuarioDao();

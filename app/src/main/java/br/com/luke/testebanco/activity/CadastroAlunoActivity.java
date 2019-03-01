@@ -3,8 +3,6 @@ package br.com.luke.testebanco.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -14,9 +12,8 @@ import br.com.luke.testebanco.adapters.SpinnerTurmasAdapter;
 import br.com.luke.testebanco.components.AlunoActHolder;
 import br.com.luke.testebanco.delegate.BuscarTurmasDelegate;
 import br.com.luke.testebanco.entity.Turma;
-import br.com.luke.testebanco.services.buscar.BuscarTurmaTask;
+import br.com.luke.testebanco.services.buscar.BuscarTurmasTask;
 import br.com.luke.testebanco.services.salvar.SalvarAlunoTask;
-import br.com.luke.testebanco.services.salvar.SalvarTurmaTask;
 import br.com.luke.testebanco.util.NavigationActivity;
 
 public class CadastroAlunoActivity extends AppCompatActivity implements InitActivity, BuscarTurmasDelegate, View.OnClickListener {
@@ -37,7 +34,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
         super.onResume();
         initListeners();
 
-        new BuscarTurmaTask(this, CadastroAlunoActivity.this).execute();
+        new BuscarTurmasTask(this, CadastroAlunoActivity.this).execute();
     }
 
     @Override
@@ -65,7 +62,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
                 salvarAluno();
             break;
             case R.id.btn_ver_alunos :
-                Toast.makeText(this, "Teste OK", Toast.LENGTH_SHORT).show();
+                new NavigationActivity(this).goToclass(ExibirAlunosActivity.class);
             break;
         }
     }
@@ -98,6 +95,13 @@ public class CadastroAlunoActivity extends AppCompatActivity implements InitActi
     private void carregarTurmas(List<Turma> turmas){
         this.adapter = new SpinnerTurmasAdapter(this, R.layout.item_sp_turmas, turmas);
         this.ah.getSpTurma().setAdapter(this.adapter);
+        cleanComponents();
+    }
+
+    @Override
+    public void cleanComponents() {
+        this.ah.getEdtAluno().setText("");
+        this.ah.getEdtAluno().requestFocus();
     }
 
     @Override

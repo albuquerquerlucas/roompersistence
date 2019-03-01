@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".activity.ExibirAlunosActivity">
+    tools:context=".activity.ExibirTurmasActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/lv_alunos"
+            android:id="@+id/lv_turmas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

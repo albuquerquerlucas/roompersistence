@@ -5,13 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.List;
-
 import br.com.luke.testebanco.R;
 import br.com.luke.testebanco.components.TurmaActHolder;
-import br.com.luke.testebanco.delegate.BuscarTurmasDelegate;
-import br.com.luke.testebanco.entity.Turma;
-import br.com.luke.testebanco.services.buscar.BuscarTurmaTask;
 import br.com.luke.testebanco.services.salvar.SalvarTurmaTask;
 import br.com.luke.testebanco.util.NavigationActivity;
 
@@ -46,7 +41,7 @@ public class CadastroTurmaActivity extends AppCompatActivity implements InitActi
                 salvarTurma();
             break;
             case R.id.btn_ver_turmas :
-                //new BuscarTurmaTask(this, CadastroTurmaActivity.this).execute("");
+                new NavigationActivity(this).goToclass(ExibirTurmasActivity.class);
             break;
         }
     }
@@ -60,6 +55,14 @@ public class CadastroTurmaActivity extends AppCompatActivity implements InitActi
         }
 
         new SalvarTurmaTask(this).execute(turma);
+
+        this.th.getEdtTurma().setText("");
+    }
+
+    @Override
+    public void cleanComponents() {
+        this.th.getEdtTurma().setText("");
+        this.th.getEdtTurma().requestFocus();
     }
 
     @Override

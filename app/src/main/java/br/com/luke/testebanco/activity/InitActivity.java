@@ -9,4 +9,5 @@ public interface InitActivity {
 
     //void initUi();
     void initListeners();
+    void cleanComponents();
 }

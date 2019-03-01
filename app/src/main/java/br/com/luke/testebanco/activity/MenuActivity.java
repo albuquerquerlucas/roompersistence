@@ -39,6 +39,11 @@ public class MenuActivity extends AppCompatActivity implements InitActivity, Vie
     }
 
     @Override
+    public void cleanComponents() {
+
+    }
+
+    @Override
     public void initListeners() {
         this.mh.getBtnCadastroAluno().setOnClickListener(this);
         this.mh.getBtnCadastroTurma().setOnClickListener(this);

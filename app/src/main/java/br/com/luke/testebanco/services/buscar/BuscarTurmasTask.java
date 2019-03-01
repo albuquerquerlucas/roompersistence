@@ -11,13 +11,13 @@ import br.com.luke.testebanco.persistence.DataBaseClient;
 
 import static br.com.luke.testebanco.persistence.DataBaseClient.getInstance;
 
-public class BuscarTurmaTask extends AsyncTask<String, Void, List<Turma>> {
+public class BuscarTurmasTask extends AsyncTask<String, Void, List<Turma>> {
 
     private Context context;
     private BuscarTurmasDelegate delegate;
 
 
-    public BuscarTurmaTask(Context context, BuscarTurmasDelegate activity) {
+    public BuscarTurmasTask(Context context, BuscarTurmasDelegate activity) {
         this.context = context;
         this.delegate = activity;
     }

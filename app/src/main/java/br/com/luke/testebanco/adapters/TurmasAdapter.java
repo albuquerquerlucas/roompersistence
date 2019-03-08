@@ -10,15 +10,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.luke.testebanco.R;
+import br.com.luke.testebanco.dto.TurmaDTO;
 import br.com.luke.testebanco.entity.Turma;
 
 public class TurmasAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Turma> turmasList;
+    private List<TurmaDTO> turmasList;
     private LayoutInflater mInflater = null;
+    //private StringBuilder sb = new StringBuilder();
 
-    public TurmasAdapter(Context context, List<Turma> turmasList) {
+    public TurmasAdapter(Context context, List<TurmaDTO> turmasList) {
         this.context = context;
         this.turmasList = turmasList;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,7 +55,30 @@ public class TurmasAdapter extends BaseAdapter {
         viewHolder.txtAlunos = (TextView) rowView.findViewById(R.id.txt_item_alunos_turma);
 
         viewHolder.txtId.setText(String.valueOf(turmasList.get(position).getId()));
-        viewHolder.txtTurma.setText(turmasList.get(position).getTurma());
+        viewHolder.txtTurma.setText(turmasList.get(position).getDs_turma());
+
+        switch (turmasList.size()){
+            case 1:
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append(turmasList.get(position).getNm_aluno()).append("\n");
+                viewHolder.txtAlunos.setText(String.valueOf(sb1));
+            break;
+            case 2:
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(turmasList.get(position).getNm_aluno()).append("\n");
+                viewHolder.txtAlunos.setText(String.valueOf(sb2));
+                break;
+            case 3:
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append(turmasList.get(position).getNm_aluno()).append("\n");
+                viewHolder.txtAlunos.setText(String.valueOf(sb3));
+                break;
+            case 4:
+                StringBuilder sb4 = new StringBuilder();
+                sb4.append(turmasList.get(position).getNm_aluno()).append("\n");
+                viewHolder.txtAlunos.setText(String.valueOf(sb4));
+                break;
+        }
 
         return rowView;
     }
